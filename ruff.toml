@@ -1,0 +1,16 @@
+line-length = 120
+exclude = ["tests"]
+
+select = ["ALL"]
+ignore = [
+  "ANN204",
+  "D100",
+  "D203",
+  "D211",
+  "D212",
+  "D213",
+  "D413",
+  "FA102",
+  "TRY003",
+  "EM012",
+]

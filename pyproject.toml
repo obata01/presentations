@@ -1,0 +1,23 @@
+[project]
+name = "agent"
+version = "0.0.0"
+dependencies = [
+  "numpy",
+  "pandas",
+  "matplotlib",
+  "seaborn",
+  "pandas-datareader",
+  "mplfinance",
+  "langchain",
+  "langgraph",
+  "langchain-openai",
+  "pydantic",
+  "langgraph-checkpoint",
+]
+
+
+[project.optional-dependencies]
+dev = [
+  "ruff",
+  "ipykernel",
+]

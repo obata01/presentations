@@ -1,0 +1,9 @@
+services:
+  presentations:
+    container_name: presentations
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/workspace
+    tty: true
