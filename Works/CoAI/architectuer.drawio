@@ -1,0 +1,97 @@
+<mxfile host="65bd71144e">
+    <diagram id="ai-flow" name="Page-1">
+        <mxGraphModel dx="1156" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="AI対話システムデータフロー" style="text;html=1;fontSize=24;fontStyle=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="20" width="400" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui" value="UI/アプリケーション" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#1f4e79;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="140" width="180" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="dialog" value="オーケストレーター / 対話システム&lt;br&gt;(Orchestrator /&amp;nbsp;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Dialog System&lt;/span&gt;)" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#1f4e79;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="130" width="220" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="agent" value="AIエージェント&#xa;(AI Agent / LLM)" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=light-dark(#264779, #b45c06);" parent="1" vertex="1">
+                    <mxGeometry x="860" y="130" width="180" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="speechBox" value=" " style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#bdbdbd;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="300" width="300" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="stt" value="Speech to Text" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=light-dark(#27487c, #b45c06);" parent="1" vertex="1">
+                    <mxGeometry x="260" y="347.5" width="120" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="tts" value="Text to Speech" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f28c28;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="347.5" width="120" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="memoryBox" value=" " style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#bdbdbd;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="320" width="320" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="rdb" value="RDB&#xa;(短期記憶: 会話履歴 / Short-Term Memory)" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="350" width="120" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="vdb" value="Vector DB&#xa;(長期記憶: 知識ベース / Long-Term Memory)" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="350" width="120" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="memoryLabel" value="記憶 / データストア" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="505" width="320" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="テキスト入力" style="endArrow=block;html=1;strokeColor=#1f4e79;strokeWidth=2;" parent="1" source="ui" target="dialog" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="思考と回答" style="endArrow=block;html=1;strokeColor=light-dark(#1f4e79, #b45c06);strokeWidth=2;startArrow=block;startFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dialog" target="agent" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="770" y="200" as="sourcePoint"/>
+                        <mxPoint x="850" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e3" value="音声入力/テキスト出力" style="endArrow=block;html=1;strokeColor=#1f4e79;strokeWidth=2;startArrow=block;startFill=1;" parent="1" source="stt" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="320" y="257" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e4" value="テキスト入力/音声出力" style="endArrow=block;html=1;strokeColor=#f28c28;strokeWidth=2;exitX=0.111;exitY=1.008;exitDx=0;exitDy=0;exitPerimeter=0;startArrow=block;startFill=1;" parent="1" source="ui" target="tts" edge="1">
+                    <mxGeometry x="-0.0062" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e5" value=" " style="endArrow=block;html=1;strokeColor=#1f4e79;strokeWidth=2;" parent="1" target="ui" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="90" y="200" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="130" y="200"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e6" value="Read / Write" style="endArrow=block;html=1;strokeColor=#666666;strokeWidth=1;dashed=1;" parent="1" source="dialog" target="rdb" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" value="Read Only" style="endArrow=block;html=1;strokeColor=#666666;strokeWidth=1;dashed=1;" parent="1" source="dialog" target="vdb" edge="1">
+                    <mxGeometry x="-0.0054" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="テキスト出力" style="endArrow=block;html=1;strokeColor=#f28c28;strokeWidth=2;exitX=-0.009;exitY=0.707;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="dialog" target="ui">
+                    <mxGeometry x="-0.0062" relative="1" as="geometry">
+                        <mxPoint x="200" y="271" as="sourcePoint"/>
+                        <mxPoint x="200" y="358" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value=" " style="endArrow=block;html=1;strokeColor=light-dark(#f28c28, #8eb6db);strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="130" y="230" as="sourcePoint"/>
+                        <mxPoint x="90" y="230" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="170" y="230"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6" value="音声⇔テキスト 変換" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+                    <mxGeometry x="90" y="440" width="320" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
