@@ -1,7 +1,7 @@
 # 03_STATE_SPEC - Dialogue System Design Pack
 本章は **LangGraph State（状態）** の仕様です。  
 **「Stateキー＝共通言語」** として、ノード間の契約（R/W）・ログ・テスト・運用の基準になります。  
-※本章は **常に更新（Living Spec）** される前提です（変更は 99_DECISIONS_LOG.md に必ず追記）。
+※本章は **常に更新（Living Spec）** される前提です。
 
 ---
 
@@ -27,26 +27,43 @@
 ```mermaid
 classDiagram
   class DSState["DSState<br/>LangGraph State"]{
-    +string session_id
-    +string turn_id
-    +Message[] messages
-    +Intent intent
+    # チャット情報
+    +string thread_id
+    +string user_id
+    +string last_user_message
+    +string last_ai_message
+    +Message[] chat_history
+    # NLU制御
+    +IntentType intent
+    # Step-by-step制御
     +DialogueMode dialogue_mode
-    +Policy policy
-    +Goal goal
+    +GoalType goal
+    +dict[StepID, StepContext] step_contexts
+    +Any action_result
+    # Slot-filling制御
+    +dict[str, SlotsContext] slots_contexts
     +Slots slots
-    +string[] missing_slots
+    +list[str] filled_slots
+    +list[str] missing_slots
     +Plan plan
+    # NLG用
     +ToolContext tool
     +Response response
     +Trace trace
-    +ErrorInfo last_error
+    # デバッグ用
+    +Errors errors 
   }
 
-  class Intent["Intent"]{
-    +string intent_type
-    +float confidence
-    +string[] candidates
+  class Intent["IntentType"]{
+    +str GOAL_TRIGGER
+    +str ACKNOWLEDGE
+    +str NEGATION
+    +str TERMINATE
+    +str SLOT_INFORM
+    # NON-TOD intents
+    +str QUESTION
+    +str SMALL_TALK
+    +str OSS
   }
 
   class Policy["Policy"]{
@@ -56,38 +73,16 @@ classDiagram
     +string risk_level
   }
 
-  class Goal["Goal"]{
-    +string goal_type
-    +string goal_text
-    +string status
+  class Goal["GoalType"]{
+    +str RECOMMEND
+    +str HEARINGS
   }
 
   class Slots["Slots"]{
-    +string procedure_type
+    +SlotsBase procedure_type
     +string contract_type
     +string customer_id
     +dict values
-  }
-
-  class Plan["Plan"]{
-    +string[] steps
-    +string next_action
-    +dict params
-  }
-
-  class ToolContext["ToolContext"]{
-    +string tool_name
-    +dict tool_input
-    +dict tool_output_summary
-    +string tool_status
-    +string tool_ref
-  }
-
-  class Response["Response"]{
-    +string message
-    +string[] citations
-    +string followup_question
-    +string response_type
   }
 
   class Trace["Trace"]{

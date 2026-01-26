@@ -1,4 +1,3 @@
-````md
 # 07_TEST_PLAN - Dialogue System Design Pack
 本章は **テスト計画（Test Plan）** です。  
 特に、モデル/プロンプト/ワークフロー変更で壊れやすい対話システムに対して、**Golden（固定）テスト**を中心に回帰を担保します。  
@@ -9,7 +8,7 @@
 > - State: 03_STATE_SPEC.md  
 > - Node Contract: 04_NODE_CONTRACTS.md  
 > - Observability: 14_OBSERVABILITY.md  
-> - Backlog: 02_BACKLOG.md（Story ↔ Test）  
+> - Backlog: 02_BACKLOG.md（Story ↔ Test）  s
 
 ---
 

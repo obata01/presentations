@@ -1,4 +1,5 @@
 # 01_CONTEXT_AND_SCOPE - Dialogue System Design Pack
+
 本章は **「外部との境界（Context）と、作る範囲（Scope）」** を固定するためのドキュメントです。  
 以降の要求・設計・実装（State/Node/Workflow）がブレないよう、**責任分界**と**外部依存**を明確にします。
 
@@ -13,11 +14,15 @@
 ---
 
 ## 2. System Overview（システムの要約）
-### 2.1 System Name（仮）
+### 2.1 System Name
 - Dialogue System / Task-oriented Agent（LangGraph）
 
 ### 2.2 One-liner
-- ユーザーの自然文入力から意図と必要情報を抽出し、**確認質問・検索・ツール実行**を経て解決へ導く。解決不能時は **安全に縮退**し、必要なら **人へ引き継ぐ**。
+- ユーザーの自然文入力から意図を判定し、意図に応じて以下を実行する.
+    - ヒアリング
+    - エージェント/ツール呼び出し（QA・深堀りなど）
+    - OOSメッセージの提示
+- 解決不能時は安全に縮退し、必要なら 人へ引き継ぐ。
 
 ---
 

@@ -1,4 +1,4 @@
-````md
+
 # 08_OBSERVABILITY - Dialogue System Design Pack
 本章は、対話システムの **観測（Observability）** を定義します。  
 アジャイル前提で、まずは **最低限（MVP）** を確実に入れ、運用しながら **徐々に厚く**していきます。
