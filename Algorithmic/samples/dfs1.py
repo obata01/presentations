@@ -76,11 +76,55 @@ CASES = [
     ),
 ]
 
+
 @pytest.fixture(params=CASES, ids=[f"case{i}" for i in range(1, len(CASES) + 1)])
 def case(request):
     return request.param
 
+
 #############################################
+
+
+def test_dfs2(case):
+    data, expected = case
+    input = Input(data).input
+
+    H, W = map(int, input().split())
+
+    S = None
+    G = None
+    field = []
+    for i in range(H):
+        row = list(input())
+        field.append(row)
+        if "s" in row:
+            idx = row.index("s")
+            S = (i, idx)
+        if "g" in row:
+            idx = row.index("g")
+            G = (i, idx)
+
+    visited = [[False] * W for _ in range(H)]
+
+    def dfs(h, w):
+        visited[h][w] = True
+
+        for nh, nw in [(h + 1, w), (h - 1, w), (h, w + 1), (h, w - 1)]:
+            if not (0 <= nh < H and 0 <= nw < W):
+                continue
+
+            if visited[nh][nw]:
+                continue
+
+            if field[nh][nw] == "#":
+                continue
+
+            dfs(nh, nw)
+
+    dfs(S[0], S[1])
+    ans = "Yes" if visited[G[0]][G[1]] else "No"
+    assert ans == expected
+
 
 def test_dfs1(case):
     data, expected = case
@@ -106,7 +150,7 @@ def test_dfs1(case):
         visited[h][w] = True
         for pos in [(h - 1, w), (h + 1, w), (h, w - 1), (h, w + 1)]:
             nh, nw = pos
-            if not(0 <= nh < H and 0 <= nw < W):
+            if not (0 <= nh < H and 0 <= nw < W):
                 continue
             if visited[nh][nw]:
                 continue

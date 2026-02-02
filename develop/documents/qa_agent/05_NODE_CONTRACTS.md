@@ -3,7 +3,7 @@
 
 
 ## 1. Node Topology（ノード群の俯瞰）
-> Fallback Nodeに関しては図からは割愛しています。
+> Fallback Nodeに関しては図からは割愛。
 
 ```mermaid
 flowchart TD
@@ -197,43 +197,3 @@ flowchart TD
 | システムエラー | 即座にフォールバック応答（リトライなし） | -->
 
 
-
-## 6. Node R/W Matrix（StateのRead/Write契約・俯瞰）
-
-> ノード名は 05_WORKFLOW_DM.md の用語に寄せる。
-> Wは「主に更新責務を持つ」、Rは「参照する」。
-
-### 6.1 各モジュールにおけるState Key
-
-| State Key         | SG | NLU | DM  | NLG | EG | FB  | Notes            |
-| ----------------- | --:   | --: | --: | --: | --: | --: | ---------------- |
-| `query`           |   -   |   - |   - |   - |   - |   - | workflowのinvoke時に設定 |
-| `response`        |   -   |   - |   - |   W |   - |   - | NLGの結果を保持      |
-| `chat_history`    |   W   |   R |   R |   R |   W |   - | ユーザMSGとNLGの結果を保持.|
-| `all_history`     |   W   |   W |   W |   W |   W |   - | デバッグ/分析用       |
-| `intents`         |   W   |   R |   R |   R |   R |   - | -            |
-| `dialogue_mode`   |   -   |   - |   W |   - |   - |   - | -            |
-| `goal_phase`      |   -   |   - |   W |   - |   - |   - | -            |
-| `step_contexts`   |   -   |   - |   W |   - |   - |   - | -            |
-| `step_history`    |   -   |   - |   W |   - |   - |   - | -            |
-| `slots_contexts`  |   -   |   - |   W |   - |   - |   - | -            |
-| `slot_context`    |   -   |   - |   W |   - |   - |   - | -            |
-| `errors`          |   -   |   - |   - |   - |   - |   W | 例外時のみ    |
-
-
-### 6.2 DM(Dialogue Management)におけるState Key
-
-| State Key         | DST<br>GST | <br>SST | DAE<br>GE | <br/>SE | DP<br>GP | <br>SP | Notes            |
-| ----------------- | -:         | --:     | --:       | --:     | --:      | --:    | ---------------- |
-| `query`           |  -         |   -     |   R       |   R     |  -       |  -     | ユーザー入力          |
-| `response`        |  -         |   -     |   -       |   -     |  -       |  -     | AI応答             |
-| `chat_history`    |  -         |   -     |   R       |   R     |  -       |  -     | append-only      |
-| `all_history`     |  W         |   W     |   W       |   W     |  W       |  W     | デバッグ/分析用       |
-| `intents`         |  R         |   -     |   -       |   -     |  -       |  -     | IR生成            |
-| `dialogue_mode`   |  W         |   R     |   -       |   -     |  -       |  -     | GST/DP制御        |
-| `goal_phase`      |  W         |   R     |   W       |   R     |  W       |  R     | GST/GE/GP更新     |
-| `step_contexts`   |  W         |   -     |   W       |   -     |  R       |  -     | GST/GE更新        |
-| `step_history`    |  R         |   -     |   W       |   -     |  R       |  -     | GE append        |
-| `slots_contexts`  |  W         |   W     |   -       |   -     |  -       |  R     | SST/SE更新        |
-| `slot_context`    |  -         |   W     |   -       |   W     |  -       |  W     | SST/SE/SP更新     |
-| `errors`          |  -         |   -     |   -       |   -     |  -       |  -     | 例外時のみ         |
